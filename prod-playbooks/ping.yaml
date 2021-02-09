@@ -1,6 +1,6 @@
 ---
   - name: ping hosts
-    hosts: 
+    hosts: prod
     all tasks:
       - name: ping hosts 
         ping:
