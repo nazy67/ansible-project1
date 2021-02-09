@@ -1,0 +1,11 @@
+--- 
+all:
+  hosts:
+  # localhost ungrouped
+  children: 
+    dev:
+      hosts:
+        centos: 
+          ansible_host:
+        ubuntu:
+          ansible_host:
