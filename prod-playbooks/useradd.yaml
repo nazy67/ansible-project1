@@ -1,0 +1,30 @@
+---
+  - name: add users on prod servers
+    hosts: prod
+    gather_facts: yes
+    tasks:
+      - name: add users amy, sam, liza and ansible on centos
+        when: ansible_facts['distribution'] == "CentOS"
+        user:
+          name: "{{ item }}"
+          state: present
+          generate_ssh_key: yes  
+        with_items: 
+          - amy
+          - sam
+          - liza
+          - ansible
+          - bob
+
+      - name: add users amy, sam, liza and ansible on ubuntu
+        when: ansible_facts['distribution'] == "Ubuntu"
+        user:
+          name: "{{ item }}"
+          state: present
+          generate_ssh_key: yes  
+        with_items: 
+          - amy
+          - sam
+          - liza
+          - ansible
+          - bob              
