@@ -6,6 +6,6 @@ all:
     prod:
       hosts:
         centos:
-          ansible_host: 64.227.12.17
+          ansible_host: 
         ubuntu:
-          ansible_host: 159.89.94.112
+          ansible_host: 
