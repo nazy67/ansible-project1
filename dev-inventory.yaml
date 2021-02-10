@@ -6,6 +6,6 @@ all:
     dev:
       hosts:
         centos:
-          ansible_host: 157.230.210.189
+          ansible_host: 
         ubuntu:
-          ansible_host: 157.230.214.77
+          ansible_host: 
