@@ -5,3 +5,7 @@ all:
   children: 
     dev:
       hosts:
+        centos:
+          ansible_host: 157.230.210.189
+        ubuntu:
+          ansible_host: 157.230.214.77

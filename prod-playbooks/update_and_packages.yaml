@@ -1,0 +1,44 @@
+---
+  - name: update package on both servers
+    hosts: prod 
+    gather_facts: yes
+    tasks: 
+      - name: yum update packages centos
+        yum:
+          name: "*"
+          state: latest
+        when: 
+          - ansible_facts['distribution'] == "CentOS"
+          - ansible_facts['hostname'] == "centos"
+          
+      - name: apt update packages ubuntu
+        apt:
+          name: "*"
+          state: latest
+        when: 
+          - ansible_facts['distribution'] == "Ubuntu" 
+          - ansible_facts['hostname'] == "ubuntu"  
+            
+      - name: install packages vim, git, curl and wget on CentOS
+        yum:
+          name:  
+            - git
+            - vim
+            - curl
+            - wget
+          state: present
+        when: 
+          - ansible_distribution == "CentOS" 
+          - ansible_facts['hostname'] == "centos"
+
+      - name: install packages vim, git, curl and wget on Ubuntu
+        apt:
+          name:  
+            - git
+            - vim
+            - curl
+            - wget
+          state: present
+        when: 
+          - ansible_facts['distribution'] == "Ubuntu" 
+          - ansible_facts['hostname'] == "ubuntu"                     
