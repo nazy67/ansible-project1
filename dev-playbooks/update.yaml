@@ -1,20 +1,16 @@
 ---
-  - name: update package on both servers
+  - name: update package on dev servers
     hosts: dev
     gather_facts: yes
     tasks:
-      - name: yum update packages centos
+      - name: yum update packages on centos
         yum:
           name: "*"
           state: latest
-        when: 
-          - ansible_facts['distribution'] == "CentOS"
-          - ansible_facts['hostname'] == "centos"
+        when: ansible_facts['distribution'] == "CentOS"
           
-      - name: apt update packages ubuntu
+      - name: apt update packages on ubuntu
         apt:
           name: "*"
           state: latest
-        when: 
-          - ansible_facts['distribution'] == "Ubuntu" 
-          - ansible_facts['hostname'] == "ubuntu"
+        when: ansible_facts['distribution'] == "Ubuntu" 

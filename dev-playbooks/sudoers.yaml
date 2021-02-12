@@ -1,0 +1,36 @@
+---
+  - name: add ansible user  on dev hosts to sudoers group && add root's ssh-key to dev hosts
+    hosts: dev
+    gather_facts: yes
+    tasks:        
+      - name: add user ansible to sudoers group
+        when: ansible_facts['distribution'] == "Ubuntu"
+        user: 
+          name: ansible
+          groups: "sudo"
+          append: yes 
+
+      - name: add user ansible to sudoers group
+        when: ansible_facts['distribution'] ==  "CentOS" 
+        user: 
+          name: ansible
+          groups: "wheel"
+          append: yes 
+
+      - name: check if root  user has generated ssh-key on localhost
+        authorized_key:
+          user: root 
+          key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+          state: present
+
+      - name: copy the localhost root user's ssh-key to ubuntu host
+        copy:
+          src: "/root/.ssh/id_rsa.pub"
+          dest: "/home/ansible/.ssh/authorized_keys"  
+        when: ansible_facts['distribution'] == "Ubuntu"
+
+      - name: copy the ansible root user ssh-key to centos host
+        copy:
+          src: "/root/.ssh/id_rsa.pub"
+          dest: "/home/ansible/.ssh/authorized_keys"  
+        when: ansible_facts['distribution'] ==  "CentOS"                  

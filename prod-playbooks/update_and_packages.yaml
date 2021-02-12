@@ -7,18 +7,14 @@
         yum:
           name: "*"
           state: latest
-        when: 
-          - ansible_facts['distribution'] == "CentOS"
-          - ansible_facts['hostname'] == "centos"
+        when: ansible_facts['distribution'] == "CentOS"
           
       - name: apt update packages ubuntu
         apt:
           name: "*"
           state: latest
-        when: 
-          - ansible_facts['distribution'] == "Ubuntu" 
-          - ansible_facts['hostname'] == "ubuntu"  
-            
+        when: ansible_facts['distribution'] == "Ubuntu" 
+                  
       - name: install packages vim, git, curl and wget on CentOS
         yum:
           name:  
@@ -27,9 +23,7 @@
             - curl
             - wget
           state: present
-        when: 
-          - ansible_distribution == "CentOS" 
-          - ansible_facts['hostname'] == "centos"
+        when: ansible_distribution == "CentOS"
 
       - name: install packages vim, git, curl and wget on Ubuntu
         apt:
@@ -39,6 +33,4 @@
             - curl
             - wget
           state: present
-        when: 
-          - ansible_facts['distribution'] == "Ubuntu" 
-          - ansible_facts['hostname'] == "ubuntu"                     
+        when: ansible_facts['distribution'] == "Ubuntu"                     
