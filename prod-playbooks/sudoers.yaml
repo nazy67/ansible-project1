@@ -1,0 +1,18 @@
+---
+  - name: add ansible user  on prod hosts to sudoers group && add root's ssh-key to prod hosts
+    hosts: prod
+    gather_facts: yes
+    tasks:        
+      - name: add user ansible to sudoers group
+        when: ansible_facts['distribution'] == "Ubuntu"
+        user: 
+          name: ansible
+          groups: "sudo"
+          append: yes 
+
+      - name: add user ansible to sudoers group
+        when: ansible_facts['distribution'] ==  "CentOS" 
+        user: 
+          name: ansible
+          groups: "wheel"
+          append: yes 
