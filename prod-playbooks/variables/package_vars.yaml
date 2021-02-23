@@ -1,0 +1,11 @@
+playbook_name: "install packages on prod servers"
+droplets: "all"
+facts: yes
+list_of_packages: 
+  - vim
+  - git
+  - curl
+  - tree
+  - wget
+custom_cmd: "pwd"
+packages: "vim, git, wget, tree, curl"

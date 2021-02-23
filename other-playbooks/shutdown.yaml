@@ -1,0 +1,31 @@
+---
+  - name: shutdown Linux servers
+    hosts: all
+    vars: 
+      list_of_hosts: "{{ ansible_host }}"
+    gather_facts: no
+    tasks:
+      - name: shutdown
+        ignore_unreachable: yes
+        shell: 
+          cmd: sleep 2 && /sbin/shutdown -c  && /sbin/shutdown -h now
+        async: 1
+        poll: 0
+
+      - name: run ping
+        ignore_errors: yes
+        shell: 
+          cmd: ping {{ list_of_hosts }} -c 5
+        delegate_to: localhost
+        register: result
+
+      - name: read ping responce
+        ignore_errors: yes
+        debug: 
+          var: result
+
+      - name: write error code to a file
+        shell: 
+          cmd: echo {{ result }} >> /tmp/error.json
+        delegate_to: localhost        
+      

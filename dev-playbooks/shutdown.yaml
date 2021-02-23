@@ -1,9 +1,0 @@
----
-  - name: shutdown all servers
-    hosts: all
-    gather_facts: no
-    tasks:
-      - name: Shutdown server
-        shell: sleep 2 && /sbin/shutdown -c && /sbin/shutdown -h now
-        async: 1
-        poll: 0                         

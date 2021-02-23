@@ -1,0 +1,16 @@
+---
+  - name:  "{{ playbook_name }}"
+    hosts: "{{ servers }}" 
+    gather_facts: "{{ facts }}"
+    vars_files: "variables/test.yaml"
+    tasks:
+      - name: ping {{ servers }}
+        ping:
+
+      - name: ping
+        debug:
+          msg: "{{ test_message }}"
+
+      - name: run {{ custom_command }} 
+        shell:
+          cmd: "{{ custom_command }}"   

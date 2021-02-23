@@ -3,3 +3,8 @@
 *-inventory.yaml
 *-inventory.*
 *inventory.*
+
+# Error files
+
+*errors*
+error*.json

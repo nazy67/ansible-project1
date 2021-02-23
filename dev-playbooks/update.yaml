@@ -2,15 +2,29 @@
   - name: update package on dev servers
     hosts: dev
     gather_facts: yes
+    vars: 
+      package: curl
     tasks:
       - name: yum update packages on centos
         yum:
           name: "*"
           state: latest
         when: ansible_facts['distribution'] == "CentOS"
+
+      - name: yum install curl on centos
+        yum:
+          name: "{{ package }}"
+          state: latest
+        when: ansible_facts['distribution'] == "CentOS"  
           
       - name: apt update packages on ubuntu
         apt:
           name: "*"
+          state: latest
+        when: ansible_facts['distribution'] == "Ubuntu" 
+
+      - name: yum install curl on ubuntu
+        apt:
+          name: "{{ package }}"
           state: latest
         when: ansible_facts['distribution'] == "Ubuntu" 
