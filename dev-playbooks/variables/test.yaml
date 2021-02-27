@@ -1,5 +1,5 @@
 playbook_name: "testing variable file"
 servers: "all"
-facts: no # "" when we use boolean
+facts: no # no "" when we use boolean
 test_message: "Hello from test.yaml"
 custom_command: "pwd"

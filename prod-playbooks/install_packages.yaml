@@ -2,17 +2,19 @@
   - name: "{{ playbook_name }}"
     hosts: "{{ droplets }}" 
     gather_facts: "{{ facts }}"
-    vars_files: "variables/package_vars.yaml"
+    vars_files: 
+      - "variables/install_packages_tasks_vars.yaml"
+      - "variables/install_packages_play_vars.yaml"
     tasks:
       - name:  install {{ packages }} on CentOS
         yum:
-          name:  "{{ list_of_packages }}"
+          name:  "{{ centos_list_of_packages }}"
           state: latest
         when: ansible_distribution == "CentOS"
 
       - name:  install {{ packages }} on Ubuntu
         apt:
-          name:  "{{ list_of_packages }}"
+          name:  "{{ ubuntu_list_of_packages }}"
           state: latest
         when: ansible_facts['distribution'] == "Ubuntu" 
 

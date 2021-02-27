@@ -1,0 +1,11 @@
+custom_cmd: "pwd"
+packages: "vim, git, wget, tree, curl"
+# to add packages on CentOS change this section
+centos_list_of_packages: 
+  - tree
+  - wget
+# to add packages on Ubuntu change this section 
+ubuntu_list_of_packages: 
+  - vim
+  - curl
+  - wget  
