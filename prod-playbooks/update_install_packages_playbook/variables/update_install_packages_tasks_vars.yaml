@@ -1,0 +1,12 @@
+packages: "vim, git, wget, tree, curl"
+# to add packages on CentOS change this section
+centos_list_of_packages: 
+  - tree
+  - wget
+# to add packages on Ubuntu change this section 
+ubuntu_list_of_packages: 
+  - vim
+  - curl
+  - wget
+centos_update_pkg: "yum update packages on CentOS"
+ubuntu_update_pkg: "apt update packages on Ubuntu"

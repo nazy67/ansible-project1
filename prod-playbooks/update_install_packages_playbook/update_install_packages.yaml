@@ -1,0 +1,31 @@
+---
+  - name: "{{ playbook_name }}"
+    hosts: "{{ droplets }}" 
+    gather_facts: "{{ facts }}"
+    vars_files: 
+      - "variables/update_install_packages_tasks_vars.yaml"
+      - "variables/update_install_packages_play_vars.yaml"
+    tasks:
+      - name: "{{ centos_update_pkg }}"
+        yum:
+          name: "*"
+          state: latest
+        when: ansible_facts['distribution'] == "CentOS"
+          
+      - name: "{{ ubuntu_update_pkg }}"  
+        apt:
+          name: "*"
+          state: latest
+        when: ansible_facts['distribution'] == "Ubuntu"
+
+      - name:  install {{ packages }} on CentOS
+        yum:
+          name:  "{{ centos_list_of_packages }}"
+          state: latest
+        when: ansible_distribution == "CentOS"
+
+      - name:  install {{ packages }} on Ubuntu
+        apt:
+          name:  "{{ ubuntu_list_of_packages }}"
+          state: latest
+        when: ansible_facts['distribution'] == "Ubuntu"        
