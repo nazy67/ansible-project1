@@ -1,3 +1,3 @@
 playbook_name: "Add multiple users on prod servers, add ansible user to sudoers group && add root's ssh-key to prod hosts"
-servers: "prod"
+servers: "all"
 facts: yes

@@ -3,16 +3,19 @@
     hosts: "{{ servers }}"
     gather_facts: "{{ facts }}"
     vars_files: 
-      - "variables/useradd_sudoers_packages_play_vars.yaml"
-      - "variables/useradd_sudoers_packages_tasks_vars.yaml"
+      - "variables/useradd_sudoers_play_vars.yaml"
+      - "variables/useradd_sudoers_tasks_vars.yaml"
       - "variables/users.yaml"      
     tasks:
+      - name: ping hosts 
+        ping:
+
       - name:   add {{ usr_name }} on CentOS
         when: ansible_facts['distribution'] == "CentOS"
         user:
           name: "{{ item.name }}"
           state: present
-          generate_ssh_key:  "{{ ssh_keygen }}" 
+          generate_ssh_key: "{{ ssh_keygen }}" 
         with_items: "{{ user_names }}" 
 
       - name: add {{ usr_name }} on Ubuntu
@@ -20,19 +23,19 @@
         user:
           name: "{{ item.name }}"
           state: present
-          generate_ssh_key: "{{ ssh_keygen }}"  
+          generate_ssh_key: "{{ ssh_keygen }}" 
         with_items: "{{ user_names }}" 
       
-      - name: "{{ ansible_user }}"
+      - name: "{{ add_ans_sudo }}"
         when: ansible_facts['distribution'] == "Ubuntu"
         user: 
           name: ansible
           groups: "{{ ubuntu_sudo_grp }}"
-          append: yes 
+          append: "{{ append_to_sudoers_grp }}"
 
-      - name: "{{ ansible_user }}"
+      - name: "{{ add_ans_sudo }}"
         when: ansible_facts['distribution'] ==  "CentOS" 
         user: 
           name: ansible
           groups: "{{ centos_wheel_grp }}"
-          append: yes                     
+          append: "{{ append_to_sudoers_grp }}"                    
