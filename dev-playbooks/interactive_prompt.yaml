@@ -1,0 +1,15 @@
+---
+  - name: "{{ playbook_name }}"
+    hosts: "{{ servers }}"
+    vars_prompt: 
+      - name: username
+        prompt: "What is your name?"
+        private: no
+    vars_files: 
+      - "variables/test.yaml"        
+    gather_facts: "{{ facts }}"
+    tasks:
+      - name: print variable
+        debug:
+          msg: 'Your name is {{ username }}'
+          

@@ -1,16 +1,14 @@
 ---
-  - name: ping hosts
+  - name: prompt variable
     hosts: all
     vars_prompt: 
       - name: "facts"
-        prompt: "Gather facts?"
+        prompt: " Give me a message"
         private: no
-        confirm: no
     gather_facts: "{{ facts }}"
+#    vars:
+#      facts: "yes"
     tasks:
-      - name: ping hosts 
-        ping:
-
       - name: print variable
         debug:
           msg: "{{ facts }}"  

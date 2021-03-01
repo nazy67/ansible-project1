@@ -2,19 +2,16 @@
   - name: add users on dev servers
     hosts: dev
     gather_facts: yes
+      vars_files: 
+      - "variables/users.yaml"  
     tasks:
       - name: add users amy, sam, liza and ansible on centos
         when: ansible_facts['distribution'] == "CentOS"
         user:
-          name: "{{ item }}"
+          name: "{{ item.name }}"
           state: present
           generate_ssh_key: yes  
-        with_items: 
-          - amy
-          - sam
-          - liza
-          - ansible
-          - bob
+        with_items: "{{ user_names }}"
 
       - name: add users amy, sam, liza and ansible on ubuntu
         when: ansible_facts['distribution'] == "Ubuntu"
@@ -22,9 +19,4 @@
           name: "{{ item }}"
           state: present
           generate_ssh_key: yes  
-        with_items: 
-          - amy
-          - sam
-          - liza
-          - ansible
-          - bob              
+        with_items:  "{{ user_names }}"            

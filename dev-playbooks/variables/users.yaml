@@ -3,6 +3,5 @@ user_names:
   - name: bob
   - name: liza
   - name: ansible
-  #  groups: sudo,wheel # un comment if you want to add user ansible to sudoers group at the time of adding
   - name: sam
   - name: amy
