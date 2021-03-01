@@ -38,4 +38,22 @@
         user: 
           name: ansible
           groups: "{{ centos_wheel_grp }}"
-          append: "{{ append_to_sudoers_grp }}"                    
+          append: "{{ append_to_sudoers_grp }}"
+
+      - name: "{{ ssh_key_check }}"
+        authorized_key:
+          user: root 
+          key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+          state: present
+
+      - name: "{{ ubuntu_cp_ssh_key }}"
+        copy:
+          src: "/root/.ssh/id_rsa.pub"
+          dest: "/home/ansible/.ssh/authorized_keys"  
+        when: ansible_facts['distribution'] == "Ubuntu"
+
+      - name: "{{ ubuntu_cp_ssh_key }}"
+        copy:
+          src: "/root/.ssh/id_rsa.pub"
+          dest: "/home/ansible/.ssh/authorized_keys"  
+        when: ansible_facts['distribution'] ==  "CentOS"                          

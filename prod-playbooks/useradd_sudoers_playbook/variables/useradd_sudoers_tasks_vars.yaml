@@ -1,7 +1,13 @@
-# task 1 adding multip users on servers
+# task 1-2 adding multiple users on both servers
 usr_name: "users amy, sam, liza, bob and ansible"
-#  task 2 add user ansible to sudoers group on both servers
+# task 3-4 add user ansible to sudoers group on both servers
 add_ans_sudo: "add user ansible to sudoers group"
+# task 5 check if root  user has generated ssh-key on localhost
+ssh_key_check: "check if root  user has generated ssh-key on localhost"
+# task 6 copy the localhost root user's ssh-key to ubuntu host
+ubuntu_cp_ssh_key: "copy the localhost root user's ssh-key to ubuntu host"
+# task 7 copy the localhost root user's ssh-key to centos host
+centos_cp_ssh_key: "copy the localhost root user's ssh-key to centos host"
 # for ssh-keygen change this yes/no
 ssh_keygen: yes
 append_to_sudoers_grp: yes

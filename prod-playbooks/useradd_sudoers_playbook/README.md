@@ -1,4 +1,4 @@
-## Add multiple users to prod servers playbook
+## Add multiple users playbook
 
 ### Prerequisites
 
@@ -8,7 +8,7 @@
 
 ### Description
 <p>
-This reusabele playbook adds multiple users using users.yaml variables files and adds ansible user to sudoers group on both remote hosts. Tasks are using "when" conditions for each server using ansible facts in this case ansible_distributions.
+This reusable playbook adds multiple users using users.yaml variables files, adds ansible user to sudoers group  as a separate task && adds root's ssh-key to remote hosts. Tasks are using "when" conditions for each server using ansible facts in this case ansible_distributions.
 </p>
 
 The next list of users needs to be added:
