@@ -1,3 +1,0 @@
-playbook_name: "install packages on prod servers"
-droplets: "all"
-facts: yes

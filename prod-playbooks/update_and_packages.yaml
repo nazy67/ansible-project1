@@ -33,4 +33,4 @@
             - curl
             - wget
           state: present
-        when: ansible_facts['distribution'] == "Ubuntu"                     
+        when: ansible_facts['distribution'] == "Ubuntu" 

@@ -1,0 +1,7 @@
+# to add/remove users change this section
+user_names: 
+  - name: bob
+  - name: liza
+  - name: ansible
+  - name: sam
+  - name: amy

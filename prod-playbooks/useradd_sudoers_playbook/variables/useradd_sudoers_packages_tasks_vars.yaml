@@ -1,0 +1,9 @@
+# task 1 adding multip users on servers
+usr_name: "users amy, sam, liza, bob and ansible"
+#  task 2 add user ansible to sudoers group on both servers
+ansible_user: "add user ansible to sudoers group"
+# for ssh-keygen change this yes/no
+ssh_keygen: yes
+# sudoers groups for centos and ubuntu servers
+ubuntu_sudo_grp: "sudo"
+centos_wheel_grp: "wheel"

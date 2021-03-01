@@ -1,0 +1,16 @@
+{"changed": true, 
+    "cmd": "ping 192.34.58.72 -c 5", 
+    "delta": "0:00:14.029312", 
+    "end": "2021-02-23 02:58:07.420783", 
+    "msg": "non-zero return code", 
+    "rc": 1,
+    "start": "2021-02-23 02:57:53.391471", 
+    "stderr": "", 
+    "stderr_lines": [],
+    "stdout": "PING 192.34.58.72 (192.34.58.72) 56(84) bytes of data.\n\n--- 192.34.58.72 ping statistics ---\n5 packets transmitted, 0 received, 100% packet loss, time 3999ms", 
+    "stdout_lines": ["PING 192.34.58.72 (192.34.58.72) 56(84) bytes of data.", 
+        "", 
+        "--- 192.34.58.72 ping statistics ---", 
+        "5 packets transmitted, 0 received, 100% packet loss, time 3999ms"]}
+
+   

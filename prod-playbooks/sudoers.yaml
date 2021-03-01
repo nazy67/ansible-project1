@@ -1,5 +1,5 @@
 ---
-  - name: add ansible user  on prod hosts to sudoers group && add root's ssh-key to prod hosts
+  - name: add ansible user on prod hosts to sudoers group && add root's ssh-key to prod hosts
     hosts: prod
     gather_facts: yes
     tasks:        
@@ -15,4 +15,4 @@
         user: 
           name: ansible
           groups: "wheel"
-          append: yes 
+          append: yes        

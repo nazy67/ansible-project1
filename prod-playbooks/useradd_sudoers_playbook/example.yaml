@@ -1,0 +1,38 @@
+---
+  - name: "{{ playbook_name }}"
+    hosts: "{{ servers }}"
+    gather_facts: "{{ facts }}"
+    vars_files: 
+      - "variables/useradd_sudoers_packages_play_vars.yaml"
+      - "variables/useradd_sudoers_packages_tasks_vars.yaml"
+      - "variables/users.yaml"      
+    tasks:
+      - name:   add {{ usr_name }} on CentOS
+        when: ansible_facts['distribution'] == "CentOS"
+        user:
+          name: "{{ item.name }}"
+          state: present
+          generate_ssh_key:  "{{ ssh_keygen }}" 
+        with_items: "{{ user_names }}" 
+
+      - name: add {{ usr_name }} on Ubuntu
+        when: ansible_facts['distribution'] == "Ubuntu"
+        user:
+          name: "{{ item.name }}"
+          state: present
+          generate_ssh_key: "{{ ssh_keygen }}"  
+        with_items: "{{ user_names }}" 
+      
+      - name: "{{ ansible_user }}"
+        when: ansible_facts['distribution'] == "Ubuntu"
+        user: 
+          name: ansible
+          groups: "{{ ubuntu_sudo_grp }}"
+          append: yes 
+
+      - name: "{{ ansible_user }}"
+        when: ansible_facts['distribution'] ==  "CentOS" 
+        user: 
+          name: ansible
+          groups: "{{ centos_wheel_grp }}"
+          append: yes                     
